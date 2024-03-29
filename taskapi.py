@@ -31,7 +31,10 @@ if args.act=="del":
 
 if args.act=="download":
     payload = json.dumps({"action": "query"})
+    print("Request Payload:", payload)  # 打印请求体
     tasks_req = requests.post(API_URL,headers=deta_headers,data=payload,verify=False)
+        print("Response Body:", tasks_req.text)  # 打印响应体
+
     tasks=json.loads(tasks_req.text)
     if len(tasks) < 1:
         quit()
