@@ -31,10 +31,20 @@ if args.act=="del":
 
 if args.act=="download":
     payload = json.dumps({"action": "query"})
-    print("Request Payload:", payload)  # 打印请求体
+    # 转换为 JSON 格式的字符串
+    payload_json = json.dumps(payload)
+    print("Request Payload:", payload_json)  # 打印请求体
     tasks_req = requests.post(API_URL,headers=deta_headers,data=payload,verify=False)
     print("Response Body:", tasks_req.text)  # 打印响应体
-
+    # 打印请求的 URL
+    print("Request URL:", request_url)
+    # 打印响应体
+    print("Response Body:", tasks_req.text)
+    # 解析 JSON 响应体
+    response_data = json.loads(tasks_req.text)
+    # 打印出所有的键值对
+    for key, value in response_data.items():
+        print(key, ":", value)
     tasks=json.loads(tasks_req.text)
     if len(tasks) < 1:
         quit()
