@@ -37,6 +37,7 @@ if args.act=="download":
     tasks_req = requests.post(API_URL,headers=deta_headers,data=payload,verify=False)
     print("Response Body:", tasks_req.text)  # 打印响应体
     # 打印请求的 URL
+    request_url = tasks_req.request.url
     print("Request URL:", request_url)
     # 打印响应体
     print("Response Body:", tasks_req.text)
